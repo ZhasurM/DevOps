@@ -210,4 +210,3 @@ async def get_user_info_mk(user_login):
     else:
         return auth
 
-print(asyncio.run(get_user_info_mk('004335')))
