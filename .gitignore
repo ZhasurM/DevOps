@@ -1,4 +1,6 @@
 /env
 env.list
 epg.xml
-/migrations
+/migrations*
+ploshadka.py
+/de

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 from flask_migrate import Migrate
 
 
@@ -10,25 +11,47 @@ db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
 
+subs_onu = db.Table('subs_onu',
+	db.Column('subs_login', db.String(), db.ForeignKey('subs.login')),
+	db.Column('onu_mac', db.String(), db.ForeignKey('onu.mac')),
+	db.Column('date', db.String(), server_default=str(datetime.datetime.now()))
+	)
+
+
 class Subs(db.Model):
 
 	__tablename__ = 'subs'
 
-	id = db.Column(db.Integer, primary_key=True)
-	login = db.Column(db.String(), unique=True)
+	#id = db.Column(db.Integer, primary_key=True)
+	login = db.Column(db.String(), primary_key=True)
 	address = db.Column(db.String())
 	old_address = db.Column(db.String())
-	onu = db.Column(db.String())
+	onus = db.relationship(
+		'Onu', 
+		secondary=subs_onu,
+		backref=db.backref('subs', lazy='dynamic')
+        )
 	tvbox = db.Column(db.String())
 
-
-	def __init__(self, id, login, address, old_address, onu, tvbox):
-		self.id = id
+	def __init__(self, login, address, old_address):
 		self.login = login
 		self.address = address
-		self.old_address = address
-		self.onu = onu
-		self.tvbox = tvbox
+		self.old_address = old_address
+
+
+class Onu(db.Model):
+
+	__tablename__ = 'onu'
+
+	mac = db.Column(db.String(), primary_key=True)
+	owner = db.Column(db.String(), db.ForeignKey('subs.login'))
+
+	def __init__(self, mac, ros):
+		
+		self.mac = mac
+		self.ros = ros
+
+
 
 
 class Routers(db.Model):
@@ -79,7 +102,7 @@ def index():
 
 
 @app.route('/add_dev', methods=['GET', 'POST'])
-def admin_ch():
+def add_dev():
 
 	parents_hosts = db.session.query(Routers).all()
 
@@ -103,6 +126,14 @@ def admin_ch():
 
 	return render_template('add_dev.html', parents_hosts = parents_hosts)
 
+
+
+@app.route('/dev_list', methods=['GET', 'POST'])
+def dev_list():
+	routers_list = db.session.query(Routers).all()
+	olts_list = db.session.query(Olts).all()
+
+	return render_template('dev_list.html', routers_list=routers_list, olts_list=olts_list)
 
 
 if __name__ == '__main__':
