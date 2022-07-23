@@ -29,7 +29,120 @@
           font-size: 3.5rem;
         }
       }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* псевдоэлемент, отменяет выделение текста стилями при быстрых кликах */
+        .toggler__label::selection {
+            color: none;
+            background: none;
+        }
+
+
+        .toggler {
+            padding: 3px;
+        }
+
+
+        /* Стили для заголовка блока, при нажатии на который появляется дополнительный блок */
+        .toggler__label {
+            display: block;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 1.1em;
+            background-color: #fff;
+        }
+
+        /* скрытый блок позиционируется абсолютно, чтобы не оставлять пустое место */
+        .toggler__content-box  {
+            position: absolute;
+            transform: translate(9999px);
+            opacity: 0;  
+        }
+
+        /* скрываем checkbox */
+        .toggler__checkbox {
+            display: none;
+        }
+
+        /* при нажатии на блок label (каждый label через аттрибут for привязан к конкретному чекбоксу посредством уникального id)
+        чекбокс меняет свое состояние (но мы этого не видим, так как скрыли его)
+        и элемент с классом .toggler__content-box, ближайший к нажатому чекбоксу, плавно выдвигается, отображаяя
+        свое содержимое. */
+        .toggler__checkbox:checked ~ .toggler__content-box {
+
+            position: relative;
+
+            transition: opacity .5s linear;  
+            transform:translate(0);
+            opacity: 1;
+
+        }
+      .modalDialog {
+      position: fixed;
+      font-family: Arial, Helvetica, sans-serif;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.1);
+      z-index: 99999;
+      opacity:0;
+      -webkit-transition: opacity 400ms ease-in;
+      -moz-transition: opacity 400ms ease-in;
+      transition: opacity 400ms ease-in;
+      pointer-events: none;
+      }
+      .modalDialog:target {
+      opacity:1;
+      pointer-events: auto;
+      }
+      .modalDialog > div {
+      width: 400px;
+      position: relative;
+      margin: 10% auto;
+      padding: 5px 20px 13px 20px;
+      border-radius: 10px;
+      background: -moz-linear-gradient(#2edbe8, #01a6b2);
+      background: -webkit-linear-gradient(#2edbe8, #01a6b2);
+      background: -o-linear-gradient(#2edbe8, #01a6b2);
+      }
+      .close {
+      background: #606061;
+      color: #FFFFFF;
+      line-height: 25px;
+      position: absolute;
+      right: -12px;
+      text-align: center;
+      top: -10px;
+      width: 24px;
+      text-decoration: none;
+      font-weight: bold;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      -moz-box-shadow: 1px 1px 3px #000;
+      -webkit-box-shadow: 1px 1px 3px #000;
+      box-shadow: 1px 1px 3px #000;
+      }
+      .close:hover { background: #6ed1d8; }
+
+
+
     </style>
+
+
+
+
+
 
     
     <!-- Custom styles for this template -->
@@ -62,10 +175,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/add_dev">
-              <span data-feather="file"></span>
-              Добавить устройство
-            </a>
+            <a class="nav-link" href="#openModal">
+              <span data-feather="plus-circle"></span>
+              Добавить устройство</a>
+            <div id="openModal" class="modalDialog">
+             <div>
+               <a href="#close" title="Close" class="close">X</a>
+                <a class="nav-link active" href="/add_router">Добавить маршрутизатор</a>
+                <a class="nav-link active" href="/add_olt">Добавить оптический терминал</a> 
+              </div>
+                <a href="#close" title="Close" class="close">x</a>
+              </div>
+            
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/dev_list">
@@ -95,8 +216,10 @@
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
+          
           <a class="link-secondary" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
+
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
@@ -132,7 +255,7 @@
 
     </main>
   </div>
-</div>
+  </div>
 
 
     <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>

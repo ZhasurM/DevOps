@@ -1,13 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form class="col-md-9 ms-sm-auto col-lg-10 px-md-4" action="/add_dev" method="post">
-  <label for="POST-name">Тип устройства</label><br>
-  <select name="type_host">
-    <option value="">       </option>
-    <option value="router">Роутер</option>
-    <option value="terminal">Оптический терминал</option>
-  </select>
+<form class="col-md-9 ms-sm-auto col-lg-10 px-md-4" action="/add_olt" method="post">
+  
   <br>
 
   <label for="POST-name">Lable</label>
@@ -17,17 +12,15 @@
   <input type="text" name="ip"><br>
   Port<br>
   <input type="text" name="port"><br>
-  Login<br>
-  <input type="text" name="login"><br>
-  Password<br>
-  <input type="password" name="password">
-  <br>
+  Community<br>
+  <input type="text" name="community"><br>
   <label for="POST-name">Выберите вышестоящее устройство</label><br>
   <select name="parent_host">
     {% for i in parents_hosts %}
     <option value="{{i['id']}}">{{i['name']}}({{i['ip']}})</option>
     {% endfor %}
   </select>
+  <br>
   <br>
   <input type="submit" value="Добавить">
 </form>
