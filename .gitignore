@@ -4,3 +4,4 @@ epg.xml
 /migrations*
 ploshadka.py
 /de
+/app/templates/index/untitled.html
