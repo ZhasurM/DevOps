@@ -12,22 +12,24 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Абонент</th>
+              <th scope="col">login</th>
               <th scope="col">Адрес</th>
-              <th scope="col">MAC address</th>
-              <th scope="col">Onu</th>
+              <th scope="col">Старый адрес</th>
+              <th scope="col">MAC address Onu</th>
               <th scope="col">Приставка</th>
             </tr>
           </thead>
           <tbody>
+            {% for i in data %}
             <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-              <td>мас</td>
+              <td>{{i[0]}}</td>
+              <td>{{i[1]}}</td>
+              <td>{{i[2]}}</td>
+              <td>{{i[3]}}</td>
+              <td>{{i[4]}}</td>
+              <td>{{i[5]}}</td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

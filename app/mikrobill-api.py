@@ -92,7 +92,6 @@ async def get_user_info(user_login):
         result = await mbclient.process('API.GetClients', user_login)
         if result.get('code') == 0:
             user_guid = str(result.get('return')[0])
-            print(result)
             res = await mbclient.process('API.Client.{}.AutorizeInfo.Accounts'.format(user_guid), None)
             acc = res.get('return')[0]
             login_acc = await mbclient.process('API.Client.{}.AutorizeInfo.Accounts.{}.Login'.format(user_guid, acc), None)  
@@ -156,7 +155,6 @@ async def get_user_info_mk(user_login):
     key1 = KEY_MK_1
     key2 = KEY_MK_2
     host = MK_HOST
-    print(host)
     # TODO РџРѕСЂС‚ php api
     port = 7403
     # TODO РєР°СЃСЃРёСЂСѓ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЂР°Р·СЂРµС€РµРЅРѕ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ php api

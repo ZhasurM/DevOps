@@ -1,5 +1,6 @@
 from pysnmp.hlapi import *
-from app import db, Routers, Olts, Onu, Subs
+from sqlalchemy.exc import OperationalError
+#from app import db, Routers, Olts, Onu, Subs, subs_onu
 from ros_api import get_username_mac
 
 
@@ -59,44 +60,56 @@ def get_mac_vlan_port_1(address, community, port, int_count):
 
 
 
-def reqs():
-
-	#print(get_mac_vlan_port('192.168.250.18', 'public', 161, 4))
-
-	routers = db.session.query(Routers).all()
-	olts = db.session.query(Olts).all()
-
-	for rt in routers:
-		usr = get_username_mac(rt.ip, rt.login, rt.password)
-		for olt in olts:
-			if olt.ros == rt.id:
-				onu = get_mac_vlan_port(olt.ip, olt.community, olt.port, olt.count_pon)
-				onu1 = get_mac_vlan_port_1(olt.ip, olt.community, olt.port, olt.count_pon)
-			for i in usr['result']:
-				for n in onu['result']:
-					if n[2] == i[1].replace(':', '').lower():
-						for nn in onu1['result']:
-							if n[0] == nn[0] and n[1] == nn[1]:
-								us = Subs(i[0])
-								on = Onu(nn[2], n[0], n[1], olt.id)
-								db.session.merge(on)
-								us.onus.append(on)
-								db.session.merge(us)
-								db.session.commit()
-								print(
-									n[0], n[1], n[2], "-", i[0],
-									i[1].replace(':', '').lower(), nn[0], nn[1],nn[2]
-									)
 
 
+def reqs_all_dev():
 
-"""				print(usr, '\n\n')
-				print(onu, '\n\n')
-				print(onu1, '\n\n')"""
+	try:
+		routers = db.session.query(Routers).all()
+		olts = db.session.query(Olts).all()
+
+		for rt in routers:
+
+			usr = get_username_mac(rt.ip, rt.login, rt.password)
+
+			if usr['code'] == 1:
+				return {'code': 1, 'result': usr['result']}
+
+			for olt in olts:
+				if olt.ros == rt.id:
+					onu = get_mac_vlan_port(olt.ip, olt.community, olt.port, olt.count_pon)
+					onu1 = get_mac_vlan_port_1(olt.ip, olt.community, olt.port, olt.count_pon)
+					if onu['code'] == 1 or onu1['code'] == 1:
+						return {'code': 1, 'result': 'olt_error'}
+				for i in usr['result']:
+					for n in onu['result']:
+						if n[2] == i[1].replace(':', '').lower():
+							for nn in onu1['result']:
+								if n[0] == nn[0] and n[1] == nn[1]:
+									us = Subs(i[0])
+									on = Onu(nn[2], n[0], n[1], olt.id)
+									db.session.merge(on)
+									us.onus.append(on)
+									db.session.merge(us)
+									db.session.commit()
+
+		return {'code': 0, 'result': 'succsesful'}
+	except OperationalError as er:
+		return {'code': 1, 'result': er}
 
 
+#routers = db.session.query(Subs, subs_onu).filter(Subs.login==subs_onu.subs_login).all()
+#routers = db.session.query(subs_onu).filter(subs_onu.subs_login=="002509").all()
 
-	#return rt
+"""abon = db.session.query(Subs).all()
+onu = db.session.query(subs_onu).all()
+data = []
+for i in abon:
+	for n in onu:
+		if i.login == n.subs_login:
+			data.append([i.login,i.address, i.old_address, n.onu_mac, i.tvbox])
 
 
-reqs()
+print(data)
+"""
+#reqs_all_dev()

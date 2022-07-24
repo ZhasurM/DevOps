@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import OperationalError
 import datetime
 from flask_migrate import Migrate
 from ros_api import get_username_mac
+from olt_snmp import reqs_all_dev
 
 
 app = Flask(__name__)
@@ -82,19 +84,6 @@ class Tvbox(db.Model):
 		self.mac = mac
 
 
-def reqs():
-
-	rt = db.session.query(Routers).all()
-	olt = db.session.query(Olts).all()
-
-	for r in rt:
-		f = get_username_mac(r.ip, r.login, r.password)
-		print(f)
-		
-
-	return rt
-
-
 
 
 
@@ -152,7 +141,23 @@ class Olts(db.Model):
 
 @app.route('/')
 def index():
-	return render_template('index/index.html')
+	abon = db.session.query(Subs).all()
+	onu = db.session.query(subs_onu).all()
+	data = []
+	count = 0
+	for i in abon:
+		count = count + 1
+		for n in onu:
+			if i.login == n.subs_login:
+				data.append([count, i.login, i.address, i.old_address, n.onu_mac, i.tvbox])
+	return render_template('index/index.html', data = data)
+
+
+@app.route('/update_data')
+def update_data():
+	reqs_all_dev()
+	return redirect(url_for('index'))
+
 
 
 @app.route('/add_router', methods=['GET', 'POST'])
@@ -207,3 +212,7 @@ def dev_list():
 
 if __name__ == '__main__':
 	app.run()
+
+
+
+# select subs.login, onu_mac from subs, subs_onu where subs.login = subs_onu.subs_login;

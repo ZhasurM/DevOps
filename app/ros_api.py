@@ -6,7 +6,6 @@ from routeros_api import RouterOsApiPool, exceptions
 
 def get_username_mac(mik_ip, username, password):
 	try:
-		print(mik_ip, username, password)
 		connection = RouterOsApiPool(mik_ip, username, password, port=8728, 
 											  plaintext_login=True)
 		data_array = []

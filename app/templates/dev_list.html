@@ -5,7 +5,11 @@
 
 <body>
 
-    <h1>Список устройств</h1>
+    <h1 class="nav-link">Список устройств</h1>
+    <a class="nav-link" href="#">
+      <span data-feather="layers"></span>
+        Обновить
+    </a>
     {% for i in routers_list %}
       <div class="toggler">
         <input type="checkbox" id="toggler__checkbox-id-{{i['id']}}" class="toggler__checkbox">
