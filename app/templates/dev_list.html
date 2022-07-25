@@ -6,14 +6,17 @@
 <body>
 
     <h1 class="nav-link">Список устройств</h1>
-    <a class="nav-link" href="#">
-      <span data-feather="layers"></span>
-        Обновить
-    </a>
+    
     {% for i in routers_list %}
       <div class="toggler">
         <input type="checkbox" id="toggler__checkbox-id-{{i['id']}}" class="toggler__checkbox">
-        <label for="toggler__checkbox-id-{{i['id']}}" class="toggler__label">{{i['id']}}. {{i['name']}}</label>
+        <label for="toggler__checkbox-id-{{i['id']}}" class="toggler__label">{{i['id']}}. {{i['name']}}
+        <a class="nav-link" href="{{ url_for('update', data=i['id']) }}">
+      <span data-feather="layers"></span>
+        Обновить
+    </a>
+  </label>
+
         <span class="toggler__content-box">
           <table class="table table-striped table-sm">
             <thead>

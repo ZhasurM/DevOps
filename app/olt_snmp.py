@@ -62,10 +62,10 @@ def get_mac_vlan_port_1(address, community, port, int_count):
 
 
 
-def reqs_all_dev():
+def reqs_all_dev(host):
 
 	try:
-		routers = db.session.query(Routers).all()
+		routers = db.session.query(Routers).filter(Routers.id==host).all()
 		olts = db.session.query(Olts).all()
 
 		for rt in routers:
