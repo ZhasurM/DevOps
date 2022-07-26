@@ -1,6 +1,14 @@
-@app.route('/')
+from flask import Blueprint, render_template, request, redirect, url_for
+from .models import Router, subs_onu, Sub, Olt
+from ..database import db
+
+
+core = Blueprint('core', __name__, template_folder='templates', static_folder='static')
+
+
+@core.route('/')
 def index():
-	abon = db.session.query(Subs).all()
+	abon = db.session.query(Sub).all()
 	onu = db.session.query(subs_onu).all()
 	data = []
 	count = 0
@@ -12,15 +20,15 @@ def index():
 	return render_template('index/index.html', data = data)
 
 
-@app.route('/update/<data>')
+@core.route('/update/<data>')
 def update(data):
-	print(data)
+	#print(data)
 	reqs_all_dev(int(data))
 	return redirect(url_for('index'))
 
 
 
-@app.route('/add_router', methods=['GET', 'POST'])
+@core.route('/add_router', methods=['GET', 'POST'])
 def add_router():
 
 	if request.method == 'POST':
@@ -31,7 +39,7 @@ def add_router():
 		ip = request.form.get('ip')
 		port = request.form.get('port')
 
-		db.session.add(Routers(name, login, password, ip, port))
+		db.session.add(Router(name, login, password, ip, port))
 		db.session.commit()
 		return render_template('add_router.html')
 
@@ -39,7 +47,7 @@ def add_router():
 	return render_template('add_router.html')
 
 
-@app.route('/add_olt', methods=['GET', 'POST'])
+@core.route('/add_olt', methods=['GET', 'POST'])
 def add_olt():
 
 	parents_hosts = db.session.query(Routers).all()
@@ -53,7 +61,7 @@ def add_olt():
 		count_pon = request.form.get('count_pon')
 		ros = request.form.get('parent_host')
 
-		db.session.add(Olts(name, ip, ros))
+		db.session.add(Olt(name, ip, ros))
 		db.session.commit()
 		return render_template('add_olt.html')
 
@@ -62,9 +70,9 @@ def add_olt():
 
 
 
-@app.route('/dev_list', methods=['GET', 'POST'])
+@core.route('/dev_list', methods=['GET', 'POST'])
 def dev_list():
-	routers_list = db.session.query(Routers).all()
-	olts_list = db.session.query(Olts).all()
+	routers_list = db.session.query(Router).all()
+	olts_list = db.session.query(Olt).all()
 
 	return render_template('dev_list.html', routers_list=routers_list, olts_list=olts_list)

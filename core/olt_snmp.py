@@ -1,6 +1,7 @@
 from pysnmp.hlapi import *
 from sqlalchemy.exc import OperationalError
-#from app import db, Routers, Olts, Onu, Subs, subs_onu
+from ..database import db
+from .models Routers, Olts, Onu, Subs, subs_onu
 from ros_api import get_username_mac
 
 
@@ -65,8 +66,8 @@ def get_mac_vlan_port_1(address, community, port, int_count):
 def reqs_all_dev(host):
 
 	try:
-		routers = db.session.query(Routers).filter(Routers.id==host).all()
-		olts = db.session.query(Olts).all()
+		routers = db.session.query(Router).filter(Router.id==host).all()
+		olts = db.session.query(Olt).all()
 
 		for rt in routers:
 
@@ -86,7 +87,7 @@ def reqs_all_dev(host):
 						if n[2] == i[1].replace(':', '').lower():
 							for nn in onu1['result']:
 								if n[0] == nn[0] and n[1] == nn[1]:
-									us = Subs(i[0])
+									us = Sub(i[0])
 									on = Onu(nn[2], n[0], n[1], olt.id)
 									db.session.merge(on)
 									us.onus.append(on)
