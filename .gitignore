@@ -6,8 +6,8 @@ ploshadka.py
 /de
 /templates/index/untitled.html
 /core/oldapp.py
+__pycache__/
 **/__pycache__
 /core/__pycache__
 .dockerignore
 *.pyc
-/core
