@@ -50,7 +50,7 @@ def add_router():
 @core.route('/add_olt', methods=['GET', 'POST'])
 def add_olt():
 
-	parents_hosts = db.session.query(Routers).all()
+	parents_hosts = db.session.query(Router).all()
 
 	if request.method == 'POST':
 
