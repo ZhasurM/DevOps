@@ -1,8 +1,8 @@
 from pysnmp.hlapi import *
 from sqlalchemy.exc import OperationalError
 from ..database import db
-from .models Routers, Olts, Onu, Subs, subs_onu
-from ros_api import get_username_mac
+from .models import Router, Olt, Onu, Sub, subs_onu
+from .ros_api import get_username_mac
 
 
 def get_mac_vlan_port(address, community, port, int_count):
@@ -74,6 +74,7 @@ def reqs_all_dev(host):
 			usr = get_username_mac(rt.ip, rt.login, rt.password)
 
 			if usr['code'] == 1:
+				logger.error('Router error {}'.format(rt.ip))
 				return {'code': 1, 'result': usr['result']}
 
 			for olt in olts:
@@ -81,6 +82,7 @@ def reqs_all_dev(host):
 					onu = get_mac_vlan_port(olt.ip, olt.community, olt.port, olt.count_pon)
 					onu1 = get_mac_vlan_port_1(olt.ip, olt.community, olt.port, olt.count_pon)
 					if onu['code'] == 1 or onu1['code'] == 1:
+						logger.error('OLT error {}'.format(olt.ip))
 						return {'code': 1, 'result': 'olt_error'}
 				for i in usr['result']:
 					for n in onu['result']:
@@ -93,9 +95,10 @@ def reqs_all_dev(host):
 									us.onus.append(on)
 									db.session.merge(us)
 									db.session.commit()
-
+		logger.info('Request {} succesful'.format(host))
 		return {'code': 0, 'result': 'succsesful'}
 	except OperationalError as er:
+		logger.error(er)
 		return {'code': 1, 'result': er}
 
 

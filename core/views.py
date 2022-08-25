@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .models import Router, subs_onu, Sub, Olt
 from ..database import db
+from .olt_snmp import reqs_all_dev
 
 
 core = Blueprint('core', __name__, template_folder='templates', static_folder='static')
@@ -15,7 +16,7 @@ def index():
 	for i in abon:
 		count = count + 1
 		for n in onu:
-			if i.login == n.subs_login:
+			if i.login == n.sub_login:
 				data.append([count, i.login, i.address, i.old_address, n.onu_mac, i.tvbox])
 	return render_template('index/index.html', data = data)
 

@@ -1,0 +1,119 @@
+2022-08-24 21:32:17,084 - mainApp - INFO - Program started
+2022-08-24 21:34:33,089 - mainApp - INFO - Program started
+2022-08-24 21:52:40,879 - mainApp - INFO - Program started
+2022-08-24 21:52:40,879 - mainApp - INFO - Test connect with database
+2022-08-24 21:54:50,756 - mainApp - WARNING - Try = 1, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:57:10,020 - mainApp - WARNING - Try = 2, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:57:20,103 - mainApp - WARNING - Try = 3, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:57:30,179 - mainApp - WARNING - Try = 4, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:57:40,256 - mainApp - WARNING - Try = 5, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:57:50,330 - mainApp - WARNING - Try = 6, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:58:00,408 - mainApp - WARNING - Try = 7, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:58:10,484 - mainApp - WARNING - Try = 8, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:58:20,558 - mainApp - WARNING - Try = 9, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 21:58:30,635 - mainApp - WARNING - Try = 10, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:01:21,346 - mainApp - INFO - Program started
+2022-08-24 22:01:21,346 - mainApp - INFO - Test connect with database
+2022-08-24 22:01:21,786 - mainApp - WARNING - Try = 1, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:01:32,147 - mainApp - WARNING - Try = 2, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:01:42,505 - mainApp - WARNING - Try = 3, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:01:52,864 - mainApp - WARNING - Try = 4, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:03,229 - mainApp - WARNING - Try = 5, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:13,595 - mainApp - WARNING - Try = 6, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:23,948 - mainApp - WARNING - Try = 7, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:34,303 - mainApp - WARNING - Try = 8, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:44,657 - mainApp - WARNING - Try = 9, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:02:55,014 - mainApp - WARNING - Try = 10, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:03:05,024 - mainApp - WARNING - Database error
+2022-08-24 22:22:29,225 - mainApp - INFO - Program started
+2022-08-24 22:22:29,225 - mainApp - INFO - Test connect with database
+2022-08-24 22:22:29,585 - mainApp - WARNING - Try = 1, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:22:39,936 - mainApp - WARNING - Try = 2, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:22:50,283 - mainApp - WARNING - Try = 3, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:23:00,639 - mainApp - WARNING - Try = 4, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:23:10,988 - mainApp - WARNING - Try = 5, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:23:21,342 - mainApp - WARNING - Try = 6, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:23:31,689 - mainApp - WARNING - Try = 7, Error = (psycopg2.OperationalError) connection to server at "192.168.6.2", port 5432 failed: FATAL:  database "test" does not exist
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-24 22:23:44,979 - mainApp - WARNING - Database error
+2022-08-24 22:31:27,524 - mainApp - INFO - Program started
+2022-08-24 22:31:27,524 - mainApp - INFO - Test connect with database
+2022-08-25 22:42:05,938 - mainApp - INFO - Program started
+2022-08-25 22:42:05,938 - mainApp - INFO - Test connect with database
+2022-08-25 22:42:20,180 - mainApp - INFO - Program started
+2022-08-25 22:42:20,181 - mainApp - INFO - Test connect with database
+2022-08-25 22:42:50,041 - mainApp - INFO - Program started
+2022-08-25 22:42:50,041 - mainApp - INFO - Test connect with database
+2022-08-25 22:47:06,059 - mainApp - INFO - Program started
+2022-08-25 22:47:06,059 - mainApp - INFO - Test connect with database
+2022-08-25 22:47:44,034 - mainApp - INFO - Program started
+2022-08-25 22:47:44,034 - mainApp - INFO - Test connect with database
+2022-08-25 23:00:24,411 - mainApp - INFO - Program started
+2022-08-25 23:00:24,411 - mainApp - INFO - Test connect with database
+2022-08-25 23:01:05,038 - mainApp - INFO - Program started
+2022-08-25 23:01:05,039 - mainApp - INFO - Test connect with database
+2022-08-25 23:01:32,138 - mainApp - INFO - Program started
+2022-08-25 23:01:32,139 - mainApp - INFO - Test connect with database
