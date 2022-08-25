@@ -21,6 +21,7 @@ def index():
 	return render_template('index/index.html', data = data)
 
 
+
 @core.route('/update/<data>')
 def update(data):
 	#print(data)
